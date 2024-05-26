@@ -11,6 +11,8 @@ from DataBase import Data
 
 bot = telebot.TeleBot(TOKEN)
 
+keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
+keyboard1.row('Написать открытку🖼️').add("Написать поздравление🎉").add("Написать тост🥂").add("Написать конкурс🎈")
 
 # iam_token = iam_token
 
@@ -85,10 +87,10 @@ def ask_gpt(message):
 
         if rec == 1:
             bot.send_message(message.chat.id, text=f"{text}")
-            logging.info(f"Пользователю с id - {user_id} было отправлено поздравление")
+            logging.info(f"Пользователю с id - {user_id} было отправлено поздравление", reply_markup=keyboard1)
         elif rec == 2:
             bot.send_photo(message.chat.id, promt(task), text)
-            logging.info(f"Пользователю с id - {user_id} была отправлена открытка")
+            logging.info(f"Пользователю с id - {user_id} была отправлена открытка", reply_markup=keyboard1)
         return text
     
     else:
